@@ -1,7 +1,28 @@
-export const join = (req, res) => res.send("join");
-export const login = (req, res) => res.send("Login");
-export const logout = (req, res) => res.send("Logout");
-export const users = (req, res) => res.send("users");
-export const userDetail = (req, res) => res.send("userDetail");
-export const editProfile = (req, res) => res.send("editProfile");
-export const changePassord = (req, res) => res.send("changePassord");
+import routes from "../routes";
+
+export const getJoin = (req, res) => res.render("join", { pageTitle: "join" });
+export const postJoin = (req, res) => {
+  const {
+    body: { name, email, password, password2 },
+  } = req;
+  if (password !== password2) {
+    res.status(400);
+    res.render("join", { pageTitle: "join" });
+  } else {
+    res.redirect(routes.home);
+  }
+};
+export const getLogin = (req, res) =>
+  res.render("Login", { pageTitle: "login" });
+export const postLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+export const logout = (req, res) => res.redirect(routes.home);
+
+export const users = (req, res) => res.render("users", { pageTitle: "users" });
+export const userDetail = (req, res) =>
+  res.render("userDetail", { pageTitle: "user detail" });
+export const editProfile = (req, res) =>
+  res.render("editProfile", { pageTitle: "edit profile" });
+export const changePassword = (req, res) =>
+  res.render("changePassword", { pageTitle: "change password" });

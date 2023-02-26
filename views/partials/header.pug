@@ -1,0 +1,23 @@
+header.header
+  .header__column
+    a(href=routes.home) 
+      span(style="color:red; font-size:4rem") 
+        i.bi.bi-youtube
+  .header__Column 
+    form(action=routes.search, method="get") 
+      input(type="text", name="keyword", placeholder="Search in videos...")
+  .header__column
+    nav
+      ul
+        if !user.isAuthenticated
+          li
+            a(href=routes.join) Sign up
+          li 
+            a(href=routes.login) Login
+        else 
+          li
+            a(href=`/videos${routes.upload}`) Upload
+          li 
+            a(href=routes.userDetail(user.id)) Profile 
+          li 
+            a(href=routes.logout) Logout 

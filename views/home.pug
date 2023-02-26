@@ -1,0 +1,13 @@
+extends layouts/main
+include mixins/videoBlock
+
+block content 
+  .videos 
+    h1 Popular Videos
+    each item in videosDB
+      +videoBlock({
+        id:item.id,
+        videoFile:item.videoFile,
+        title:item.title,
+        views:item.views 
+        })
